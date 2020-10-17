@@ -5,20 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tim_reader_v2"
         mc:Ignorable="d"
-        Title="Tim Reader Version 2.0" Height="450" Width="503" Loaded="Window_Loaded">
+        Title="Tim Reader Version 2.0" Height="450" Width="503" Loaded="Window_Loaded" ResizeMode="NoResize">
     <Grid x:Name="lblProgramTitle">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="409*"/>
+            <ColumnDefinition Width="86*"/>
+        </Grid.ColumnDefinitions>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                 <GradientStop Color="Black" Offset="1"/>
                 <GradientStop Color="#FF347A81" Offset="0.36"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <ListBox x:Name="lstGames" Height="285" Margin="20,105,153,0" VerticalAlignment="Top" SelectionMode="Multiple" Background="White"/>
+        <ListBox x:Name="lstGames" Height="285" Margin="20,105,66.688,0" VerticalAlignment="Top" SelectionMode="Multiple" Background="White"/>
         <Label Content="Select a game then hit Read File to read game &#xD;&#xA;Statistics" HorizontalAlignment="Left" Margin="20,39,0,0" VerticalAlignment="Top" Height="53" Width="274"/>
-        <Button x:Name="FileDirectory" Content="File Directory" HorizontalAlignment="Left" Margin="359,27,0,0" VerticalAlignment="Top" Width="106" Height="26" Click="FileDirectory_Click"/>
-        <Button x:Name="GameComparison" Content="Compare " HorizontalAlignment="Left" Margin="359,326.96,0,0" VerticalAlignment="Top" Width="106" Height="26" Click="GameComparison_Click" />
-        <Label Content=" Select 2 games&#xD;&#xA;to Compare them" HorizontalAlignment="Left" Margin="359,266,0,0" VerticalAlignment="Top" Width="106" Height="45"/>
+        <Button x:Name="FileDirectory" Content="File Directory" HorizontalAlignment="Left" Margin="359,27,0,0" VerticalAlignment="Top" Width="106" Height="26" Click="FileDirectory_Click" Grid.ColumnSpan="2"/>
+        <Button x:Name="GameComparison" Content="Compare " HorizontalAlignment="Left" Margin="359,327,0,0" VerticalAlignment="Top" Width="106" Height="26" Click="GameComparison_Click" Grid.ColumnSpan="2" />
+        <Label Content=" Select 2 games&#xD;&#xA;to Compare them" HorizontalAlignment="Left" Margin="359,266,0,0" VerticalAlignment="Top" Width="106" Height="45" Grid.ColumnSpan="2"/>
         <Label Content="Tim Game File Reader By Sly" HorizontalAlignment="Left" Height="39" Margin="20,0,0,0" VerticalAlignment="Top" Width="274" FontSize="18"/>
-        <Button Content="Read File" HorizontalAlignment="Left" Margin="364,157,0,0" VerticalAlignment="Top" Width="101" Height="28" Click="ReadFile_Click"/>
+        <Button Content="Read File" HorizontalAlignment="Left" Margin="364,157,0,0" VerticalAlignment="Top" Width="101" Height="28" Click="ReadFile_Click" Grid.ColumnSpan="2"/>
     </Grid>
 </Window>
