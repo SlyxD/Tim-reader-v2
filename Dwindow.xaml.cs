@@ -164,11 +164,8 @@ namespace Tim_reader_v2
             }
             else
             {
-                
-                
                     GCwindow.TimComparison((MetaAndTXTObjects)lstGames.SelectedItems[0], (MetaAndTXTObjects)lstGames.SelectedItems[1]);
-                
-                
+
                 //{
                 //    Utilities.MessageBox("Invaild File/Files Selected");
                 //}
