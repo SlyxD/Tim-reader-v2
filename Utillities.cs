@@ -5,22 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows;
+//using System.Windows;
+
 namespace Tim_reader_v2
 {
     
     public static class Utilities
     {
-
-        
-
-        public static void MessageBox(string error)
+        public static void ShowMessageBox(string error)
         {
-            System.Windows.Forms.MessageBox.Show(error);
+            MessageBox.Show(error);
         }
-
-        
-
 
         public static string FormatTime(decimal EndTimestamp, decimal StartTimestamp)
         {
@@ -153,12 +148,10 @@ namespace Tim_reader_v2
         }
         public static string SpecialRoundType(string levelcodename)
         {
-
             string SpecialRoundName = "";
 
             if (levelcodename == "zombie_cod5_prototype" || levelcodename == "zombie_cod5_asylum" || levelcodename == "zombie_coast" || levelcodename == "zombie_temple" || levelcodename == "zombie_paris")
             {
-
                 SpecialRoundName = "no special rounds";
             }
             else if (levelcodename == "zombie_cod5_sumpf" || levelcodename == "zombie_cod5_factory" || levelcodename == "zombie_theater")
@@ -174,40 +167,6 @@ namespace Tim_reader_v2
                 SpecialRoundName = "Monkey/Chino Rounds;";
             }
             return SpecialRoundName;
-        }
-        public class HordeInfo
-        {
-            public int Round { get; set; }
-            public int Zombies { get; set; }
-            public decimal Hordes { get; set; }
-
-        }
-        public static List<HordeInfo> GetHordesInfo()
-        {
-            List<HordeInfo> data = new List<HordeInfo>();
-
-            using (StreamReader sr = new StreamReader("C:\\Users\\my pc\\Desktop\\codzombieshordecount.txt"))
-            {
-
-                while (!sr.EndOfStream)
-                {
-                    string line = sr.ReadLine();
-
-                    HordeInfo Temp = new HordeInfo();
-
-
-                    string[] fragments = line.Split(' ');
-                    Temp.Round = int.Parse(fragments[0]);
-                    Temp.Zombies = int.Parse(fragments[1]);
-                    Temp.Hordes = decimal.Parse(fragments[2]);
-
-                    data.Add(Temp);
-                }
-            }
-
-
-
-            return data;
         }
     }
 }

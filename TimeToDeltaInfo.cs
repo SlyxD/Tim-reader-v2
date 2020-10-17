@@ -11,6 +11,5 @@ namespace Tim_reader_v2
         public static long RoundNumber { get; set; }
 
         public static decimal RoundSplit { get; set; }
-
     }
 }

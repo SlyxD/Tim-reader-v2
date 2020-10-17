@@ -123,11 +123,11 @@ namespace Tim_reader_v2
             }
             if(InvaildGame1rounders != 0)
             {
-                Utilities.MessageBox($" The {Game1.CurrentRound.Number.ToString()} game has invaild rounders");
+                Utilities.ShowMessageBox($" The {Game1.CurrentRound.Number.ToString()} game has invaild rounders");
             }
             if (InvaildGame2rounders != 0)
             {
-                Utilities.MessageBox($" The {Game2.CurrentRound.Number.ToString()} game has invaild rounders");
+                Utilities.ShowMessageBox($" The {Game2.CurrentRound.Number.ToString()} game has invaild rounders");
             }
             return rounders;
         }
@@ -371,13 +371,13 @@ namespace Tim_reader_v2
             //Checks
             if (Game1 == null && Game2 == null)
             {
-               Utilities.MessageBox("Game/Games are not vaild");
+               Utilities.ShowMessageBox("Game/Games are not vaild");
                 return;
             } 
             
            if(Game1.PlayerCount != Game2.PlayerCount || Game1.LevelName != Game2.LevelName)
            {
-                Utilities.MessageBox("Game comparisons can only be done with games of the same map and same player count");
+                Utilities.ShowMessageBox("Game comparisons can only be done with games of the same map and same player count");
                 return;
            }
 

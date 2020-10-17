@@ -22,13 +22,10 @@ namespace Tim_reader_v2
 
     public partial class GSwindow : Window
     {
-
         public GSwindow()
         {
             InitializeComponent();
         }
-
-
 
         //Logs
         public void GameInfoLog(string message)
@@ -69,6 +66,7 @@ namespace Tim_reader_v2
 
             txtblockRoundInfo.Text += message + Environment.NewLine;
         }
+
         //parent functions
         public void gamelabel(MetaAndTXTObjects Info)
         {
@@ -89,9 +87,9 @@ namespace Tim_reader_v2
                 GameLabelRoundLog(" Round: " + Info.CurrentRound.Number);
 
                 GameLabelLog(" ");
-
             }
         }
+
         public void SpecialRounds(MetaAndTXTObjects Info)
         {
             List<string> specialrounds = new List<string>();
@@ -99,14 +97,11 @@ namespace Tim_reader_v2
             if (SpecialRoundName != "no special rounds")
             {
                 int Fourrounders = 0, Fiverounders = 0, lastfound = 0;
+
                 foreach (Round round in Info.Rounds)
                 {
-
-
-
                     if (round.IsSpecialRound == true)
                     {
-
                         if (lastfound != 0)
                         {
                             if ((round.Number - lastfound) % 4 == 0)
@@ -116,15 +111,11 @@ namespace Tim_reader_v2
                             else if ((round.Number - lastfound) % 5 == 0)
                             {
                                 Fiverounders += 1;
-
                             }
                             else
                             {
                                 GameInfoLog($"Not A Vaild Rounder... MODDING or Bennie sucks at coding !?! ");
                             }
-
-
-
                         }
 
                         specialrounds.Add(round.Number.ToString());
@@ -135,12 +126,11 @@ namespace Tim_reader_v2
                 GameInfoLog(SpecialRoundName + " " + string.Join(", ", specialrounds));
                 GameInfoLog($"Four rounders: {Fourrounders}");
                 GameInfoLog($"Five rounders: {Fiverounders}");
-
             }
         }
+
         public void GameEndLog(MetaAndTXTObjects Info)
         {
-
             if (Info.EndTimestamp > Info.StartTimestamp)
             {
                 RoundInfoLog("Game ended on round: " + Info.CurrentRound.Number + " at " + Utilities.FormatTime(Info.EndTimestamp, Info.StartTimestamp));
@@ -150,6 +140,7 @@ namespace Tim_reader_v2
                 RoundInfoLog("Bennie is bad at coding so the End Time Stamp was not logged");
             }
         }
+
         public void PlayerInfo(MetaAndTXTObjects Info)
         {
             foreach (Player currentplayer in Info.Players)
@@ -187,6 +178,7 @@ namespace Tim_reader_v2
                 GameInfoLog(string.Join(",", Downedrounds));
             }
         }
+
         public void SetupInfo(MetaAndTXTObjects Info)
         {
             long SetUpRound = Utilities.GetSetUpRound(Info);
@@ -197,39 +189,29 @@ namespace Tim_reader_v2
                 GameInfoLog("");
             }
         }
+
         public void TimeTo(MetaAndTXTObjects Info)
         {
             foreach (Round currentround in Info.Rounds)
             {
                 if (currentround.Number % 10 == 0 && currentround.Number >= 50 || currentround.Number == 30)
                 {
-
                     TimesLog($" {currentround.Number} - {Utilities.FormatTime(currentround.StartTimestamp, Info.StartTimestamp)}");
-
                 }
             }
             TimesLog(" ");
         }
+
         public void IRS(MetaAndTXTObjects Info)
         {
             foreach (Round currentround in Info.Rounds)
             {
-
-
-
                 //call to zombie count function and convert to hordes 
-
                 double Zombies = Utilities.CalculateZombieCount((uint)Info.PlayerCount, currentround.Number);
-
                 decimal Hordes = (decimal)(Zombies / 24);
-
-
                 decimal sph = 0;
                 decimal roundtime = Utilities.Time(currentround.EndTimestamp, currentround.StartTimestamp);
                 roundtime /= 60000;
-
-
-
 
                 //calculate sph
                 if (currentround.IsSpecialRound == false)
@@ -264,7 +246,6 @@ namespace Tim_reader_v2
                     roundtime *= 60;
                     roundtime = Math.Round(roundtime, 2);
                     RoundInfoLog("round: " + currentround.Number + " in " + roundtime + " Sec's" + " " + "| Round sph: " + sph + "|");
-
                 }
 
                 //round time Log > 1 min 
@@ -279,40 +260,33 @@ namespace Tim_reader_v2
                     roundtime = Math.Round(roundtime, 2);
                     RoundInfoLog("round: " + currentround.Number + " in " + roundtime + " Min's" + " " + "| Round sph: " + sph + "|");
                 }
-
-
             }
-
-
-
 
             RoundInfoLog("Round: " + Info.CurrentRound.Number.ToString() + " Started at " + Utilities.FormatTime(Info.CurrentRound.StartTimestamp, Info.StartTimestamp));
             GameEndLog(Info);
         }
+
         //Back Button
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-
         }
+
         public void TimMeta(MetaAndTXTObjects MetaInfo)
         {
             // game label
             gamelabel(MetaInfo);
 
-            
             if ((MetaInfo.PlayerCount == 1))
             {
                 PlayerInfo(MetaInfo);
             }
             else if (MetaInfo.PlayerCount > 1)
             {
-
                 GameInfoLog(" ");
                 GameInfoLog("Players and Player Stats:");
 
                 PlayerInfo(MetaInfo);
-
             }
             GameInfoLog(" ");
             GameInfoLog("Game Stats:");
@@ -327,7 +301,6 @@ namespace Tim_reader_v2
             ///Set up Infomation 
 
             SetupInfo(MetaInfo);
-
 
             ///missed instas log
             if(MetaInfo.CurrentRound.Number >= 163)
@@ -356,8 +329,8 @@ namespace Tim_reader_v2
                 Tradetimes.Add(Tradeinfo.Time);
                 Traphits.Add(Tradeinfo.TrapHits);
                 Boxhits.Add(Tradeinfo.BoxHits);
-
             }
+
             if (Tradetimes.Count != 0)
             {
                 if (Tradetimes.Count != 0 && Boxhits.Count != 0)
@@ -408,9 +381,7 @@ namespace Tim_reader_v2
                         decimal milsecs = (secs - secswhole);
                         milsecs = Math.Round(milsecs, 0);
                         TradeLog($"Trade Started at: {hours + ":" + minswhole.ToString("D2") + ":" + secswhole.ToString("D2") + "." + milsecs}");
-
                     }
-
                     else
                     {
                         decimal mins = Time;
@@ -423,7 +394,6 @@ namespace Tim_reader_v2
                     }
 
                     TradeLog($"Boxhits: {MetaInfo.CurrentTrade.BoxHits}");
-
                     TradeLog($"Traphits: {MetaInfo.CurrentTrade.TrapHits}");
                 }
             }
@@ -432,27 +402,19 @@ namespace Tim_reader_v2
                 TradeLog("No trades logged");
             }
 
-
-
             //time to functions
             TimeTo(MetaInfo);
 
             //Indualvidual Round Stats
             IRS(MetaInfo);
-
-
-
         }
         public void TimSaved(MetaAndTXTObjects TxtInfo)
         {
-
             // Map Name 
-
             gamelabel(TxtInfo);
+
             //game info
-
             GameInfoLog(" ");
-
             GameInfoLog("Game Stats:");
             GameInfoLog($"solo lives used: {TxtInfo.SoloLivesGiven}");
             ///Set up Infomation 
@@ -468,8 +430,6 @@ namespace Tim_reader_v2
             }
 
             //trades
-
-
             List<long> Tradetimes = new List<long>();
             List<long> Boxhits = new List<long>();
 
@@ -478,11 +438,10 @@ namespace Tim_reader_v2
                 Tradetimes.Add(Tradeinfo.Time);
 
                 Boxhits.Add(Tradeinfo.BoxHits);
-
             }
+
             if (Tradetimes.Count != 0)
             {
-
                 if (Tradetimes.Count() != 0 && Boxhits.Count() != 0)
                 {
                     TradeLog($"Trade count: {Tradetimes.Count}");
@@ -526,7 +485,6 @@ namespace Tim_reader_v2
                         decimal milsecs = (secs - secswhole);
                         milsecs = Math.Round(milsecs, 0);
                         TradeLog($"Trade Started at: {hours + ":" + minswhole.ToString("D2") + ":" + secswhole.ToString("D2") + "." + milsecs}");
-
                     }
 
                     else
@@ -547,17 +505,12 @@ namespace Tim_reader_v2
             {
                 TradeLog("No trades logged");
             }
-            //time to
 
+            //time to
             TimeTo(TxtInfo);
 
-
             //Individual round info
-
             IRS(TxtInfo);
-
-
-
         }
     }
 }
